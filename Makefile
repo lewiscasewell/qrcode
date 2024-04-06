@@ -1,13 +1,24 @@
-build:
-	@g++ -std=c++11 -o main main.cpp
+CFLAGS = -std=c++17
 
-run:
-	@./main
+CXXSOURCE = main.cpp \
+	app/app_init.cpp \
+	src/*.cpp \
+	QRCode/src/qrcode.c \
+	lodepng/lodepng.cpp
+
+INC=-I -IQRCode/src -Ilodepng -Isrc -Iapp
+
+TARGET = qrcode
+
+COMPILER = g++
+
+$(TARGET): $(CXXSOURCE)
+	$(COMPILER) $(CFLAGS) $(INC) -o $(TARGET) $(CXXSOURCE) $(LDFLAGS)
+
+.PHONY: test clean
+
+test: $(TARGET)
+	./$(TARGET) --t 2 --v 4 --str www.google.com --f test.png
 
 clean:
-	@rm -rf main
-
-it: clean build run
-
-dsa:
-	@g++ -std=c++11 -o dsa dsa.cpp && ./dsa
+	rm -f $(TARGET)
