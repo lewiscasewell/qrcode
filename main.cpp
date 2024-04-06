@@ -1,7 +1,13 @@
-#include <iostream>
+#include "app_init.hpp"
 
-int main()
+int main(int argc, char *argv[])
 {
-
-    return 0;
+    if (app_run(argc, argv))
+    {
+        return 0;
+    }
+    else
+    {
+        return -1;
+    }
 }
