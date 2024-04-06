@@ -1,0 +1,6 @@
+[submodule "lodepng"]
+	path = lodepng
+	url = https://github.com/lvandeve/lodepng.git
+[submodule "QRCode"]
+	path = QRCode
+	url = https://github.com/ricmoo/QRCode.git
